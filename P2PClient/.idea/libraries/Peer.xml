@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Peer">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Peer.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

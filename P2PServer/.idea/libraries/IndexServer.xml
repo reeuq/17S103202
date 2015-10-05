@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="IndexServer">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/IndexServer.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
