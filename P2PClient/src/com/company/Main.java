@@ -3,7 +3,6 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-            //
         // Background Thread
         PeerServer ps1 = new PeerServer();
         ps1.Start();
