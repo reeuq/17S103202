@@ -53,7 +53,7 @@ public class Commander {
         // /Users/mialiu/Desktop
         _folderPath = path;
 
-            IndexServerClient client = new IndexServerClient(_peerServer._port);
+        IndexServerClient client = new IndexServerClient(_peerServer._port);
         boolean result = false;
         try {
             result = client.Register(host, port);
@@ -72,49 +72,50 @@ public class Commander {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-            //while(true) {
-                System.out.println("Please input the file name for search");
-                //String name = "Lecture3.pdf";
-        String name = s1.nextLine();
-                List<String> list = client.Search(name);
+        while(true) {
+            System.out.println("Please input the file name for search");
+            //String name = "Lecture3.pdf";
+            String name = s1.nextLine();
+            List<String> list = client.Search(name);
             //}
 
-        if (list == null || list.isEmpty()) {
-            try {
-                outputFile.write("Search result: no peers contain " + name + ".\n");
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        } else {
-            try {
-                outputFile.write(name + " has been found on peers:\n");
-                for (String ip : list) {
-                    outputFile.write("    " + ip + "\n");
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            System.out.println("Download the file? (y|n)");
-            //String ans = "y";
-            String ans = s1.nextLine();
-            if (ans.equals("y") || ans.equals("Y")) {
-                _peerClient = new PeerClient();
-                System.out.println("Try to download from " + list.get(0));
-                result = _peerClient.Download(list.get(0), name);
+            if (list == null || list.isEmpty()) {
                 try {
-                    if (result) {
-                        outputFile.write(name + " has been downloaded.\n");
-                    } else {
-                        outputFile.write(name + " has not been downloaded successfully.\n");
-                    }
-                    outputFile.close();
+                    outputFile.write("Search result: no peers contain " + name + ".\n");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-            }
+            } else {
+                try {
+                    outputFile.write(name + " has been found on peers:\n");
+                    for (String ip : list) {
+                        outputFile.write("    " + ip + "\n");
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                System.out.println("Download the file? (y|n)");
+                //String ans = "y";
+                String ans = s1.nextLine();
+                if (ans.equals("y") || ans.equals("Y")) {
+                    _peerClient = new PeerClient();
+                    System.out.println("Try to download from " + list.get(0));
+                    result = _peerClient.Download(list.get(0), name);
+                    try {
+                        if (result) {
+                            outputFile.write(name + " has been downloaded.\n");
+                        } else {
+                            outputFile.write(name + " has not been downloaded successfully.\n");
+                        }
+                        outputFile.close();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
 
+            }
         }
-        client.Close();
+//        client.Close();
             //System.out.println("");
             //System.out.println("");
         //}
